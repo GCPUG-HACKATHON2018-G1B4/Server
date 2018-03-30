@@ -1,86 +1,34 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
-  </div>
+
+  
+<b-container class="bv-example-row" style="">
+    <b-row>
+        <b-col sm="8" style="background-color:red">
+          <b-container fluid>
+              <b-row class="my-1">
+                <b-col sm="12">
+                <b-form-input id="input-large" size="lg" type="text" placeholder="Enter your name"></b-form-input>
+                </b-col>
+              </b-row>
+          </b-container>
+
+            <div>
+              <b-form-textarea id="textarea1"
+                              v-model="text"
+                              placeholder="Enter something"
+                              :rows="27"
+                              :max-rows="27">
+              </b-form-textarea>
+            
+            </div>
+        </b-col>
+        
+        <b-col sm="4" style="background-color:blue">
+          <b-form-textarea id="textarea3" plaintext 
+          :value="text" :rows="20"></b-form-textarea>
+        </b-col>
+    </b-row>
+</b-container> 
 </template>
 
 <script>
@@ -90,24 +38,23 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+   data () {
+    return {
+      text: 'This is some text.\nIt is read only and doesn\'t look like an input.'
+    }
   }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
+
+.container {
+  max-width:100%;
 }
-ul {
-  list-style-type: none;
+.col-sm-12 {
   padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
 }
 </style>
