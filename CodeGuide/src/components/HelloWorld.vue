@@ -8,25 +8,8 @@
 
   <b-collapse is-nav id="nav_collapse">
 
-    <b-navbar-nav>
-      <b-nav-item href="#">Link</b-nav-item>
-      <b-nav-item href="#" disabled>Disabled</b-nav-item>
-    </b-navbar-nav>
-
     <!-- Right aligned nav items -->
     <b-navbar-nav class="ml-auto">
-
-      <b-nav-form>
-        <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search"/>
-        <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
-      </b-nav-form>
-
-      <b-nav-item-dropdown text="Lang" right>
-        <b-dropdown-item href="#">EN</b-dropdown-item>
-        <b-dropdown-item href="#">ES</b-dropdown-item>
-        <b-dropdown-item href="#">RU</b-dropdown-item>
-        <b-dropdown-item href="#">FA</b-dropdown-item>
-      </b-nav-item-dropdown>
 
       <b-nav-item-dropdown right>
         <!-- Using button-content slot -->
@@ -52,16 +35,16 @@
 
                 <b-form inline>
                   <label class="sr-only" for="inlineFormInputName2">Name</label>
-                  <b-input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName1" placeholder="Jane Doe" />
+                  <b-input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName1" placeholder="Name" />
 
                   <label class="sr-only" for="inlineFormInputName2">Name</label>
-                  <b-input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName2" placeholder="Jane Doe" />
+                  <b-input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName2" placeholder="Framework" />
 
                   <label class="sr-only" for="inlineFormInputName2">Name</label>
-                  <b-input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName3" placeholder="Jane Doe" />
+                  <b-input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName3" placeholder="Feature1" />
 
                   <label class="sr-only" for="inlineFormInputName2">Name</label>
-                  <b-input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName4" placeholder="Jane Doe" />
+                  <b-input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName4" placeholder="Feature2" />
                 </b-form>
                 
                 </b-col>
@@ -72,8 +55,8 @@
               <b-form-textarea id="textarea1"
                               v-model="text"
                               placeholder="Enter something"
-                              :rows="25"
-                              :max-rows="25">
+                              :rows="23"
+                              :max-rows="23">
               </b-form-textarea>
             </div>
           </form>
@@ -81,7 +64,7 @@
         
         <b-col sm="3">
           <b-form-textarea id="textarea3" plaintext 
-          :value="text" :rows="25"></b-form-textarea>
+          :value="text" :rows="26"></b-form-textarea>
         </b-col>
     </b-row>
 </b-container> 
@@ -110,6 +93,7 @@ export default {
 }
 .col-sm-12 {
   padding: 0;
+  padding-top:5px;
 }
 
 .col-sm-9 {
@@ -119,6 +103,7 @@ export default {
 .col-sm-3 {
   margin-left: -10px;
   height:100%;
+  padding-right: 0px;
 }
 
 .bg-light {
@@ -126,6 +111,10 @@ export default {
   margin-left: -15px;
   height: 45px;
   background-color:#f7b731 !important;
+}
+
+.navbar-brand {
+  margin-left: 45%;
 }
 
 .form-control:focus {
@@ -140,7 +129,12 @@ export default {
 
 #textarea1 {
   margin-top: 8px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
+}
+
+#textarea3 {
+  background-color: #d2dae2;
+  height: 622px;
 }
 
 .form-control-lg {
@@ -170,6 +164,7 @@ export default {
 #inlineFormInputName3,
 #inlineFormInputName4 {
   width: 23.5%;
+  margin-left: 7px;
 }
 
 
