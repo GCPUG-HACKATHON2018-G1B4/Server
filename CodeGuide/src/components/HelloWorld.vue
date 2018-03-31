@@ -1,6 +1,6 @@
 <template>
 <b-container class="bv-example-row">
-    <b-navbar toggleable="md" type="dark" variant="info">
+    <b-navbar toggleable="md" type="light" variant="light">
 
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
@@ -50,7 +50,19 @@
               <b-row class="my-1">
                 <b-col sm="12">
 
-                <input id="input-large" size="lg" type="text" placeholder="Enter your name">
+                <b-form inline>
+                  <label class="sr-only" for="inlineFormInputName2">Name</label>
+                  <b-input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName1" placeholder="Jane Doe" />
+
+                  <label class="sr-only" for="inlineFormInputName2">Name</label>
+                  <b-input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName2" placeholder="Jane Doe" />
+
+                  <label class="sr-only" for="inlineFormInputName2">Name</label>
+                  <b-input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName3" placeholder="Jane Doe" />
+
+                  <label class="sr-only" for="inlineFormInputName2">Name</label>
+                  <b-input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName4" placeholder="Jane Doe" />
+                </b-form>
                 
                 </b-col>
               </b-row>
@@ -109,10 +121,11 @@ export default {
   height:100%;
 }
 
-.bg-info {
+.bg-light {
   margin-right: -15px;
   margin-left: -15px;
   height: 45px;
+  background-color:#f7b731 !important;
 }
 
 .form-control:focus {
@@ -121,7 +134,7 @@ export default {
 }
 
 .row {
-  background-color:#d1d8e0;
+  background-color:white;
   flex-wrap: nowrap;
 }
 
@@ -146,6 +159,17 @@ export default {
   border: 1px solid #cde4da;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+#input-large:focus {
+  border-color: none;
+}
+
+#inlineFormInputName1,
+#inlineFormInputName2,
+#inlineFormInputName3,
+#inlineFormInputName4 {
+  width: 23.5%;
 }
 
 
