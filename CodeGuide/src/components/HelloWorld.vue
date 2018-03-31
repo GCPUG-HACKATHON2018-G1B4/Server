@@ -1,5 +1,5 @@
 <template>
-<b-container class="bv-example-row" style="">
+<b-container class="bv-example-row">
     <b-navbar toggleable="md" type="dark" variant="info">
 
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
@@ -45,10 +45,13 @@
 
     <b-row>
         <b-col sm="9">
+          <form>
           <b-container fluid>
               <b-row class="my-1">
                 <b-col sm="12">
-                <b-form-input id="input-large" size="lg" type="text" placeholder="Enter your name"></b-form-input>
+
+                <input id="input-large" size="lg" type="text" placeholder="Enter your name">
+                
                 </b-col>
               </b-row>
           </b-container>
@@ -57,16 +60,16 @@
               <b-form-textarea id="textarea1"
                               v-model="text"
                               placeholder="Enter something"
-                              :rows="27"
-                              :max-rows="27">
+                              :rows="25"
+                              :max-rows="25">
               </b-form-textarea>
-            
             </div>
+          </form>
         </b-col>
         
         <b-col sm="3">
           <b-form-textarea id="textarea3" plaintext 
-          :value="text" :rows="20"></b-form-textarea>
+          :value="text" :rows="25"></b-form-textarea>
         </b-col>
     </b-row>
 </b-container> 
@@ -97,9 +100,19 @@ export default {
   padding: 0;
 }
 
+.col-sm-9 {
+  margin-left: 5px;
+}
+
+.col-sm-3 {
+  margin-left: -10px;
+  height:100%;
+}
+
 .bg-info {
   margin-right: -15px;
   margin-left: -15px;
+  height: 45px;
 }
 
 .form-control:focus {
@@ -109,6 +122,32 @@ export default {
 
 .row {
   background-color:#d1d8e0;
+  flex-wrap: nowrap;
 }
+
+#textarea1 {
+  margin-top: 8px;
+  margin-bottom: 30px;
+}
+
+.form-control-lg {
+  margin-top: 6px;
+}
+
+#input-large {
+  margin-top: 4px;
+  width: 100%;
+  display: block;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height:1.5;
+  color:#495057;
+  background-clip:padding-box;
+  border: 1px solid #cde4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+
 
 </style>
