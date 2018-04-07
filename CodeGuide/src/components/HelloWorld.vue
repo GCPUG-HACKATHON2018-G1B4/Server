@@ -4,21 +4,14 @@
 
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-  <b-navbar-brand href="#">NavBar</b-navbar-brand>
+  <b-navbar-brand href="#">코카인</b-navbar-brand>
 
   <b-collapse is-nav id="nav_collapse">
 
     <!-- Right aligned nav items -->
     <b-navbar-nav class="ml-auto">
 
-      <b-nav-item-dropdown right>
-        <!-- Using button-content slot -->
-        <template slot="button-content">
-          <em>User</em>
-        </template>
-        <b-dropdown-item href="#">Profile</b-dropdown-item>
-        <b-dropdown-item href="#">Signout</b-dropdown-item>
-      </b-nav-item-dropdown>
+    <i class="far fa-smile"></i>
     </b-navbar-nav>
 
   </b-collapse>
@@ -33,18 +26,22 @@
               <b-row class="my-1">
                 <b-col sm="12">
 
+                <b-nav id="nav3">
+                  <b-nav-item>Keyword</b-nav-item>
+                </b-nav>
+
                 <b-form inline>
                   <label class="sr-only" for="inlineFormInputName2">Name</label>
-                  <b-input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName1" placeholder="Name" />
+                  <input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName1" placeholder="Name" name="hash" v-model="hash.tag1" size="lg" type="text" v-on:keyup.enter="passHash1"/>
 
                   <label class="sr-only" for="inlineFormInputName2">Name</label>
-                  <b-input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName2" placeholder="Framework" />
+                  <input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName2" placeholder="Framework" name="hash" v-model="hash.tag2" size="lg" type="text" v-on:keyup.enter="passHash2"/>
 
                   <label class="sr-only" for="inlineFormInputName2">Name</label>
-                  <b-input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName3" placeholder="Feature1" />
+                  <input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName3" placeholder="Feature1" name="hash" v-model="hash.tag3" size="lg" type="text" v-on:keyup.enter="passHash3"/>
 
                   <label class="sr-only" for="inlineFormInputName2">Name</label>
-                  <b-input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName4" placeholder="Feature2" />
+                  <input class="mb-2 mr-sm-2 mb-sm-0" id="inlineFormInputName4" placeholder="Feature2" name="hash" v-model="hash.tag4" size="lg" type="text" v-on:keyup.enter="getHash"/>
                 </b-form>
                 
                 </b-col>
@@ -52,35 +49,86 @@
           </b-container>
 
             <div>
+              <b-nav id="nav2">
+                <b-nav-item>Code_Editor</b-nav-item>
+              </b-nav>
+
               <b-form-textarea id="textarea1"
                               v-model="text"
-                              placeholder="Enter something"
+                              placeholder="Enter Your Code"
                               :rows="23"
                               :max-rows="23">
               </b-form-textarea>
+
+              <b-nav id="nav4">
+                <b-nav-item>line 1, Column 12</b-nav-item>
+              </b-nav>
             </div>
           </form>
         </b-col>
         
+
         <b-col sm="3">
-          <b-form-textarea id="textarea3" plaintext 
-          :value="text" :rows="26"></b-form-textarea>
+          <b-nav id="nav1">
+            <b-nav-item>Code-Guide</b-nav-item>
+          </b-nav>
+
+          <div class="box-container">
+            <div class="box" v-for="data in datalist">
+                <b-card title> {{data.title}} 
+                
+                <p class="card-text mt-2"> 
+                  {{data.body}}
+                </p>
+                
+                </b-card>              
+            </div>
+          </div>
         </b-col>
     </b-row>
 </b-container> 
 </template>
-
+<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 <script>
+
 export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  },
-   data () {
-    return {
-      text: 'This is some text.\nIt is read only and doesn\'t look like an input.'
+  data:   function data() {    
+    return   {
+          hash: [
+            {tag1: ''},
+            {tag2: ''},
+            {tag3: ''},
+            {tag4: ''}
+          ],
+          datalist: [],
+          text:''
+        } 
+    },
+    methods: {
+    
+
+    getHash () {
+    
+     console.log(this.hash.tag1, this.hash.tag2, this.hash.tag3, this.hash.tag4);
+     
+     this.$http.get(`http://35.189.132.166:5000/setting?tag=java&tag=android&tag=camera&tag=save`) 
+    //  this.$http.get(`http://35.189.132.166:5000/setting?tag= #{this.hash.tag1} &tag= #{this.hash.tag2} &tag= #{this.hash.tag3} &tag= #{this.hash.tag4} `) 
+     //  this.$http.get('http://35.189.132.166:5000/setting?tag='+this.hash.tag1+'&tag='+this.hash.tag2+'&tag='+this.hash.tag3+'&tag='+this.hash.tag4 )
+     .then(function(response) {
+       console.log(response)
+        return response.json();        
+     })
+     .then(data => {
+       this.datalist = Object.values(data);
+       console.log( Object.values(data))
+     })
+     
+     .catch(function(error){
+      console.log(error)
+     })
+
+        
+
     }
   }
 }
@@ -93,15 +141,16 @@ export default {
 }
 .col-sm-12 {
   padding: 0;
-  padding-top:5px;
 }
 
 .col-sm-9 {
-  margin-left: 5px;
+  margin-left: 0px;
+  padding-left: 0px;
+  margin-top:1px;
 }
 
 .col-sm-3 {
-  margin-left: -10px;
+  margin-right: -8px;
   height:100%;
   padding-right: 0px;
 }
@@ -110,11 +159,30 @@ export default {
   margin-right: -15px;
   margin-left: -15px;
   height: 45px;
-  background-color:#f7b731 !important;
+  background-color:#2364AA !important;
 }
 
 .navbar-brand {
   margin-left: 45%;
+  color: #FEC601;
+  font-weight:600;
+}
+
+.navbar-brand:active,
+.navbar-brand:hover {
+  color:#fbc531;
+}
+
+.nav {
+  background-color: #3DA5D9;
+  line-height: 0.5rem;
+  margin-bottom: -8px;
+  margin-top: 10px;
+
+}
+
+.form-control {
+  border-radius: 0px;
 }
 
 .form-control:focus {
@@ -130,11 +198,16 @@ export default {
 #textarea1 {
   margin-top: 8px;
   margin-bottom: 15px;
+  border-radius: 0px;
+  height: 526px;
+  width: 1014px;
+  margin-left: 8px;
+  padding-right: 0px;
 }
 
-#textarea3 {
+.box-container {
   background-color: #d2dae2;
-  height: 622px;
+  height: 600px;
 }
 
 .form-control-lg {
@@ -167,6 +240,85 @@ export default {
   margin-left: 7px;
 }
 
+a {
+  color: white;
+}
 
+#nav1 {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  background-color:#EA7317;
+  font-weight: 500;
+}
+
+#nav2 {
+  background-color: #73BFB8;
+  font-weight: 500;
+}
+
+
+#nav3 {
+  margin-bottom: -8px;
+  margin-top: -5px !important;
+  font-weight: 500;
+}
+
+#nav4 {
+  margin-top: -15px;
+  width: 1014px;
+  font-weight: 200;
+  font-size: 0.8rem;
+  background-color: #2c3e50;
+  margin-left: 8px;
+}
+
+.form-inline {
+  margin-top: 12px;
+}
+
+
+
+.card {
+  border-radius: 0px;
+  height: 100%;
+}
+
+.card-body {
+  padding: 0.5rem;
+}
+
+p {
+  font-size: 0.8rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+}
+
+.box {
+    width: 20em; height: 20%;
+    border: solid 1px #ccc;
+    position: relative;
+    background: white;
+}
+.box:before, .box:after {
+    min-height: 45%; width: 65%;
+    border-radius: .2em;
+    box-shadow: 0 0 .625em rgba(204,204,204,.4);
+    position: absolute;
+    z-index: -1;
+    background: rgba(204,204,204,.4);
+    content: '';
+}
+.box:before {
+    bottom: 0; left: .3em;
+    transform: rotate(-5deg);
+}
+.box:after {
+    right: .3em; bottom: 0; 
+    transform: rotate(5deg);
+}
 
 </style>
+
+
