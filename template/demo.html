@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $("button").click(function () {
+                const val1 = $('#txt1').val();
+                const val2 = $('#txt2').val();
+                const val3 = $('#txt3').val();
+                const val4 = $('#txt4').val();
+
+                var settings = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": `http://35.189.132.166:5000/setting?tag=${val1}&tag=${val2}&tag=${val3}&tag=${val4}`,
+                    "method": "GET"
+                }
+
+                $.ajax(settings).done(function (response) {
+                    console.log(response);
+
+                    response.forEach(function (element, idx) {
+                        console.log(idx)
+                        document.getElementById('guide' + idx).innerHTML = `
+                            TITLE : ${element.title} 
+                            SCORE : ${element.score}
+                            TAG   : ${element.tag}
+
+                            BODY  : ${element.body}
+
+
+                        `
+                    }, this);
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <textarea rows="1" cols="50" id="txt1">python
+</textarea>
+    <textarea rows="1" cols="50" id="txt2">tensorflow
+</textarea>
+    <textarea rows="1" cols="50" id="txt3">softmax
+</textarea>
+    <textarea rows="1" cols="50" id="txt4">mnist
+</textarea>
+
+    <button id="btn">cccc</button>
+    <textarea rows="30" cols="50">
+
+    </textarea>
+    <textarea id='guide0' rows=30 cols=30/>
+    </textarea>
+    <textarea id='guide1' rows=30 cols=30/>
+    </textarea>
+
+    <textarea id='guide2' rows=30 cols=30/>
+    </textarea>
+    <textarea id='guide3' rows=30 cols=30/>
+    </textarea>
+    <textarea id='guide4' rows=30 cols=30/>
+    </textarea>
+
+    <script>
+
+    </script>
+</body>
+
+</html>
